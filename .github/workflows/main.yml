@@ -1,0 +1,8 @@
+name: login
+on: push
+jobs:
+  login:
+    runs-on: ubuntu-latest
+    steps:
+      - name: login step
+        run: echo "welcome to GHA"
