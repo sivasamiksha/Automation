@@ -4,8 +4,8 @@ import { EmaraLoginPage } from '../page/EmaraLoginPage';
 
 test.use({
   httpCredentials: {
-    username: 'emaraacademy',
-    password: 'Emara@2025',
+    username: process.env.HTTP_USERNAME ?? 'emaraacademy',
+    password: process.env.HTTP_PASSWORD ?? 'Emara@2025',
   },
 });
 
@@ -15,7 +15,10 @@ test.describe('My Group Page - UI Validation', () => {
   test.beforeEach(async ({ page }) => {
     const loginPage = new EmaraLoginPage(page);
     await loginPage.goto();
-    await loginPage.login('sivaneshan@yopmail.com', 'Test@123');
+    await loginPage.login(
+      process.env.APP_EMAIL ?? 'sivaneshan@yopmail.com',
+      process.env.APP_PASSWORD ?? 'Test@123'
+    );
 
     myGroupPage = new MyGroupPage(page);
     await myGroupPage.goto();
